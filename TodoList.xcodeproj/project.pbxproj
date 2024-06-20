@@ -16,7 +16,6 @@
 		2515CEFD2C20330600DF56C3 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515CEFC2C20330600DF56C3 /* FirebaseUserListener.swift */; };
 		2515CF002C2033FF00DF56C3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515CEFF2C2033FF00DF56C3 /* User.swift */; };
 		2515CF032C2034B200DF56C3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515CF022C2034B200DF56C3 /* Constants.swift */; };
-		2515CF072C20379100DF56C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2515CF062C20379100DF56C3 /* GoogleService-Info.plist */; };
 		2515CF092C203C9800DF56C3 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2515CF082C203C9800DF56C3 /* FCollectionReference.swift */; };
 		2543DA752C22B1DC002E162E /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2543DA742C22B1DC002E162E /* StatusTableViewController.swift */; };
 		257EE3732C212D9B00BF1FFE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257EE3722C212D9B00BF1FFE /* SignUpViewController.swift */; };
@@ -29,6 +28,7 @@
 		257EE3822C21735E00BF1FFE /* FirebaseTaskListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257EE3812C21735E00BF1FFE /* FirebaseTaskListener.swift */; };
 		257EE3842C21855800BF1FFE /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 257EE3832C21855800BF1FFE /* TaskDetailViewController.swift */; };
 		25F396242C23EBE3004D3B68 /* AllTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25F396232C23EBE3004D3B68 /* AllTaskViewController.swift */; };
+		25F396282C242F30004D3B68 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 25F396272C242F30004D3B68 /* GoogleService-Info.plist */; };
 		FCEA2FAFC89ABAEDC7531BDF /* Pods_TodoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9C24E78AA2F7529C1DDB58D /* Pods_TodoList.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,6 @@
 		2515CEFC2C20330600DF56C3 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
 		2515CEFF2C2033FF00DF56C3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2515CF022C2034B200DF56C3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		2515CF062C20379100DF56C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2515CF082C203C9800DF56C3 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		2543DA742C22B1DC002E162E /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		257EE3722C212D9B00BF1FFE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		257EE3812C21735E00BF1FFE /* FirebaseTaskListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTaskListener.swift; sourceTree = "<group>"; };
 		257EE3832C21855800BF1FFE /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		25F396232C23EBE3004D3B68 /* AllTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTaskViewController.swift; sourceTree = "<group>"; };
+		25F396272C242F30004D3B68 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		545510FAA78E7FF2EC82185A /* Pods-TodoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.debug.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.debug.xcconfig"; sourceTree = "<group>"; };
 		E5EBF4DE0811EBC1E26E539B /* Pods-TodoList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoList.release.xcconfig"; path = "Target Support Files/Pods-TodoList/Pods-TodoList.release.xcconfig"; sourceTree = "<group>"; };
 		F9C24E78AA2F7529C1DDB58D /* Pods_TodoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +77,7 @@
 		2515CEB32C201D8000DF56C3 = {
 			isa = PBXGroup;
 			children = (
+				25F396272C242F30004D3B68 /* GoogleService-Info.plist */,
 				2515CEBE2C201D8000DF56C3 /* TodoList */,
 				2515CEBD2C201D8000DF56C3 /* Products */,
 				B06D29B68C560896A89FB336 /* Pods */,
@@ -106,7 +107,6 @@
 				2515CEC82C201D8100DF56C3 /* Assets.xcassets */,
 				2515CECA2C201D8100DF56C3 /* LaunchScreen.storyboard */,
 				2515CECD2C201D8100DF56C3 /* Info.plist */,
-				2515CF062C20379100DF56C3 /* GoogleService-Info.plist */,
 			);
 			path = TodoList;
 			sourceTree = "<group>";
@@ -240,7 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2515CECC2C201D8100DF56C3 /* LaunchScreen.storyboard in Resources */,
-				2515CF072C20379100DF56C3 /* GoogleService-Info.plist in Resources */,
+				25F396282C242F30004D3B68 /* GoogleService-Info.plist in Resources */,
 				2515CEC92C201D8100DF56C3 /* Assets.xcassets in Resources */,
 				2515CEC72C201D8000DF56C3 /* Main.storyboard in Resources */,
 			);
