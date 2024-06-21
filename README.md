@@ -13,7 +13,8 @@ git clone https://github.com/leanhkhoa1803/todoList.git
 cd <repository_name>
 
 Install Dependencies
-pod install
+- pod install
+
 After running the above command, open the .xcworkspace file instead of the .xcodeproj file.
 
 Build the Project
