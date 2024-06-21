@@ -28,7 +28,7 @@ class FirebaseTaskListener {
         FirebaseReference(.Task).document(task.id).delete()
     }
     
-    func downloadTasksCurrentDayFromFirebase(completion: @escaping (_ allTasks: [Task]?) ->Void) {
+    func downloadTasksCurrentDayFromFirebase(completion: @escaping (_ error: Error?,_ allTasks: [Task]?) ->Void) {
         
         let calendar = Calendar.current
         var dateComponents = DateComponents()
@@ -59,7 +59,7 @@ class FirebaseTaskListener {
                     print("no documents")
                     if error != nil{
                         DispatchQueue.main.async {
-                            completion(nil)
+                            completion(error,nil)
                         }
                     }
                     return
@@ -68,7 +68,7 @@ class FirebaseTaskListener {
                 if documents.isEmpty {
                     print("No tasks found for the current day")
                     DispatchQueue.main.async {
-                        completion(nil)
+                        completion(error,nil)
                     }
                     return
                 }
@@ -79,11 +79,11 @@ class FirebaseTaskListener {
                 }
                 
                 allTasks.sort(by: { $0.createdDate! > $1.createdDate! })
-                completion(allTasks)
+                completion(error,allTasks)
             })
     }
     
-    func downloadAllTaskFromFirebase(completion: @escaping (_ allTasks: [Task]?) ->Void) {
+    func downloadAllTaskFromFirebase(completion: @escaping (_ error: Error?,_ allTasks: [Task]?) ->Void) {
         taskListener = FirebaseReference(.Task)
             .whereField(kUSERID, isEqualTo: User.currentId)
             .addSnapshotListener({ (querySnapshot, error) in
@@ -92,7 +92,7 @@ class FirebaseTaskListener {
                     print("no documents")
                     if error != nil{
                         DispatchQueue.main.async {
-                            completion(nil)
+                            completion(error,nil)
                         }
                     }
                     return
@@ -101,7 +101,7 @@ class FirebaseTaskListener {
                 if documents.isEmpty {
                     print("No tasks found for the current day")
                     DispatchQueue.main.async {
-                        completion(nil)
+                        completion(error,nil)
                     }
                     return
                 }
@@ -112,7 +112,7 @@ class FirebaseTaskListener {
                 }
                 
                 allTasks.sort(by: { $0.createdDate! > $1.createdDate! })
-                completion(allTasks)
+                completion(error,allTasks)
             })
     }
 }

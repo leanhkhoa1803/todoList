@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import ProgressHUD
+import FirebaseAuth
 
 
 class AllTaskViewController : UITableViewController {
@@ -15,6 +17,7 @@ class AllTaskViewController : UITableViewController {
     var filteredTask: [Task] = []
     var taskSelected: Task?
     let searchController = UISearchController(searchResultsController: nil)
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,7 @@ class AllTaskViewController : UITableViewController {
         self.tableView.refreshControl = self.refreshControl
         
         tableView.tableFooterView = UIView()
-        
+        setupSpinner()
         setupSearchController()
         downloadTasks()
     }
@@ -39,7 +42,20 @@ class AllTaskViewController : UITableViewController {
     }
     
     private func downloadTasks() {
-        FirebaseTaskListener.shared.downloadAllTaskFromFirebase { (allFirebaseTasks) in
+        showActivityIndicator()
+        FirebaseTaskListener.shared.downloadAllTaskFromFirebase { (error,allFirebaseTasks) in
+            self.hideActivityIndicator()
+            
+            if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                if code == AuthErrorCode.networkError {
+                    // Handle the case where the device is offline
+                    DispatchQueue.main.async {
+                        ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                    }
+                    return
+                }
+            }
+            
             if allFirebaseTasks == nil {
                 self.allTask = []
                 let emptyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
@@ -109,6 +125,15 @@ class AllTaskViewController : UITableViewController {
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         FirebaseUserListener.shared.logOutCurrentUser { (error) in
+            if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                if code == AuthErrorCode.networkError {
+                    // Handle the case where the device is offline
+                    DispatchQueue.main.async {
+                        ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                    }
+                    return
+                }
+            }
             
             if error == nil {
                 let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
@@ -119,6 +144,12 @@ class AllTaskViewController : UITableViewController {
                 }
             }
         }
+    }
+    
+    func setupSpinner(){
+        self.activityIndicator.center = CGPoint(x:UIScreen.main.bounds.size.width / 2, y:UIScreen.main.bounds.size.height / 4)
+        self.view.addSubview(activityIndicator)
+        activityIndicator.hidesWhenStopped = true
     }
     
     private func setupSearchController() {
@@ -162,6 +193,16 @@ class AllTaskViewController : UITableViewController {
             self.downloadTasks()
             self.refreshControl!.endRefreshing()
         }
+    }
+    
+    func showActivityIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }
 

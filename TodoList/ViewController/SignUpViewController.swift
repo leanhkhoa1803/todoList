@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class SignUpViewController : UIViewController{
     @IBOutlet weak var emailLabel: UILabel!
@@ -21,19 +22,30 @@ class SignUpViewController : UIViewController{
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var reSendEmailButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        hideActivityIndicator()
         setupTextField()
         setupBackgroundTap()
     }
     
     @IBAction func registerButtonPressed(_ sender: Any) {
+        showActivityIndicator()
         if passwordTextField.text! == repeatPasswordTextField.text! {
-            
+            hideActivityIndicator()
             FirebaseUserListener.shared.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!) { (error) in
-                
+                if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                    if code == AuthErrorCode.networkError {
+                        // Handle the case where the device is offline
+                        DispatchQueue.main.async {
+                            ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                        }
+                        return
+                    }
+                }
                 if error == nil {
                     ProgressHUD.succeed("Verification email sent.")
                     self.reSendEmailButton.isHidden = false
@@ -43,6 +55,7 @@ class SignUpViewController : UIViewController{
             }
             
         } else {
+            hideActivityIndicator()
             ProgressHUD.failed("The Passwords don't match")
         }
     }
@@ -60,6 +73,15 @@ class SignUpViewController : UIViewController{
         }
         FirebaseUserListener.shared.resendVerificationEmail(email: emailTextField.text!) {
             (error) in
+            if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                if code == AuthErrorCode.networkError {
+                    // Handle the case where the device is offline
+                    DispatchQueue.main.async {
+                        ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                    }
+                    return
+                }
+            }
             if error == nil {
                 ProgressHUD.success("New verification email sent.")
             }else{
@@ -97,5 +119,15 @@ class SignUpViewController : UIViewController{
     
     @objc func backgroudTap(){
         view.endEditing(false)
+    }
+    
+    func showActivityIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }

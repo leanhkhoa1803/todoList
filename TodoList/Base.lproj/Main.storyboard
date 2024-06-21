@@ -113,6 +113,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Thd-IB-9xW">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mMr-pC-hFs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -122,17 +125,20 @@
                             <constraint firstItem="9n6-tb-6w7" firstAttribute="top" secondItem="JTG-zg-g6U" secondAttribute="bottom" constant="42" id="3KH-OB-HEm"/>
                             <constraint firstItem="Voj-hF-N8W" firstAttribute="centerX" secondItem="LaC-ev-EEU" secondAttribute="centerX" id="5fw-ly-9mX"/>
                             <constraint firstItem="JTG-zg-g6U" firstAttribute="leading" secondItem="mMr-pC-hFs" secondAttribute="leading" constant="100" id="5pc-Yw-spG"/>
+                            <constraint firstItem="Thd-IB-9xW" firstAttribute="centerX" secondItem="LaC-ev-EEU" secondAttribute="centerX" id="A7r-Vu-Io0"/>
                             <constraint firstItem="mMr-pC-hFs" firstAttribute="trailing" secondItem="9n6-tb-6w7" secondAttribute="trailing" constant="20" id="NFU-yW-arl"/>
                             <constraint firstItem="JTG-zg-g6U" firstAttribute="top" secondItem="mMr-pC-hFs" secondAttribute="top" constant="25" id="Nlw-T2-ZC1"/>
                             <constraint firstItem="hlz-Th-GF8" firstAttribute="top" secondItem="Ek5-oC-mdh" secondAttribute="bottom" constant="20" id="cPE-Gp-wLG"/>
                             <constraint firstItem="Ek5-oC-mdh" firstAttribute="top" secondItem="9n6-tb-6w7" secondAttribute="bottom" constant="25" id="dS9-pX-eEX"/>
                             <constraint firstItem="hlz-Th-GF8" firstAttribute="centerX" secondItem="LaC-ev-EEU" secondAttribute="centerX" id="tFB-37-tpQ"/>
+                            <constraint firstItem="Thd-IB-9xW" firstAttribute="centerY" secondItem="LaC-ev-EEU" secondAttribute="centerY" id="vBn-UL-lIg"/>
                             <constraint firstItem="mMr-pC-hFs" firstAttribute="trailing" secondItem="JTG-zg-g6U" secondAttribute="trailing" constant="100" id="vNo-3B-KEx"/>
                             <constraint firstItem="Ek5-oC-mdh" firstAttribute="leading" secondItem="mMr-pC-hFs" secondAttribute="leading" constant="20" id="wm8-Uc-IwL"/>
                             <constraint firstItem="9n6-tb-6w7" firstAttribute="leading" secondItem="mMr-pC-hFs" secondAttribute="leading" constant="20" id="yqw-uZ-qQI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="Thd-IB-9xW" id="ZdT-fy-36U"/>
                         <outlet property="emailLabel" destination="pr2-9g-Jbb" id="Xgr-2T-XMc"/>
                         <outlet property="emailTextField" destination="Pmt-yg-z5t" id="aFV-Xl-5Pf"/>
                         <outlet property="loginButton" destination="hlz-Th-GF8" id="bR4-cT-Twb"/>
@@ -144,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfw-te-gTx" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-45" y="-25"/>
+            <point key="canvasLocation" x="-45.038167938931295" y="-25.35211267605634"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="flE-g2-66S">
@@ -273,6 +279,9 @@
                                     <action selector="registerButtonPressed:" destination="wRc-jV-6mY" eventType="touchUpInside" id="OOy-uc-Z9f"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="NGq-9c-Ro3">
+                                <rect key="frame" x="178" y="407.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HGl-tS-8Pp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -286,12 +295,15 @@
                             <constraint firstItem="wpD-Yg-yaD" firstAttribute="leading" secondItem="HGl-tS-8Pp" secondAttribute="leading" constant="100" id="MkU-w5-Bjv"/>
                             <constraint firstItem="S3t-8j-cfI" firstAttribute="centerX" secondItem="3r3-9W-zCw" secondAttribute="centerX" id="cd5-Pz-p4H"/>
                             <constraint firstItem="GL5-3i-0aU" firstAttribute="centerX" secondItem="3r3-9W-zCw" secondAttribute="centerX" id="l03-IT-h9b"/>
+                            <constraint firstItem="NGq-9c-Ro3" firstAttribute="centerY" secondItem="3r3-9W-zCw" secondAttribute="centerY" id="l1S-ws-Ykr"/>
                             <constraint firstItem="HGl-tS-8Pp" firstAttribute="trailing" secondItem="nFb-6E-tyS" secondAttribute="trailing" constant="20" id="loL-00-iLE"/>
                             <constraint firstItem="nFb-6E-tyS" firstAttribute="top" secondItem="wpD-Yg-yaD" secondAttribute="bottom" constant="42" id="ouW-UM-lTh"/>
+                            <constraint firstItem="NGq-9c-Ro3" firstAttribute="centerX" secondItem="3r3-9W-zCw" secondAttribute="centerX" id="oy4-Fo-1Z9"/>
                             <constraint firstItem="S3t-8j-cfI" firstAttribute="top" secondItem="Yqv-HT-4lE" secondAttribute="bottom" constant="18" id="rpo-DX-uxg"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="NGq-9c-Ro3" id="CON-5L-LWJ"/>
                         <outlet property="emailLabel" destination="CSc-LY-XYX" id="GJK-Ts-a3K"/>
                         <outlet property="emailTextField" destination="tRf-Ke-29S" id="Tta-2Z-k1y"/>
                         <outlet property="loginButton" destination="CdE-Hc-8eI" id="KcI-Sr-ePL"/>
@@ -367,6 +379,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="l76-kv-Oql">
+                            <rect key="frame" x="0.0" y="218" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="DZc-AH-rFS" customClass="TaskTableViewCell" customModule="TodoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="70"/>
@@ -460,6 +476,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="l76-kv-Oql" id="afi-Y6-1YX"/>
                         <segue destination="RMg-Iq-DGL" kind="show" identifier="detailTaskFromTodayTaskSeg" id="7wu-wJ-kEe"/>
                     </connections>
                 </tableViewController>
@@ -663,6 +680,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <activityIndicatorView key="tableFooterView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="NCv-9x-vbX">
+                            <rect key="frame" x="0.0" y="148" width="393" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="9ZZ-wc-62i" customClass="TaskTableViewCell" customModule="TodoList" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="70"/>
@@ -738,6 +759,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="NCv-9x-vbX" id="nk6-kB-yM3"/>
                         <segue destination="xqO-ad-iGd" kind="show" identifier="addTaskFromAllTaskSeg" id="dRs-oY-V3W"/>
                         <segue destination="RMg-Iq-DGL" kind="show" identifier="detailTaskFromAllTaskSeg" id="6R6-be-qdb"/>
                     </connections>

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import ProgressHUD
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
@@ -19,16 +20,19 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        hideActivityIndicator()
         setupTextField()
         setupBackgroundTap()
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         if isDataInputed(type: "login"){
+            showActivityIndicator()
             loginUser()
         }else{
             ProgressHUD.failed("All Fields are required")
@@ -52,6 +56,7 @@ class LoginViewController: UIViewController {
     
     func loginUser(){
         FirebaseUserListener.shared.loginUserWithEmail(email: emailTextField.text!, password: passwordTextField.text!) {error,isEmailVerified in
+            self.hideActivityIndicator()
             if error == nil {
                 if isEmailVerified {
                     self.gotoAapp()
@@ -59,7 +64,17 @@ class LoginViewController: UIViewController {
                 }else{
                     ProgressHUD.failed("Please verify email.")
                 }
-            }else{
+            }
+            if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                if code == AuthErrorCode.networkError {
+                    // Handle the case where the device is offline
+                    DispatchQueue.main.async {
+                        ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                    }
+                    return
+                }
+            }
+            else{
                 ProgressHUD.failed("email or password incorrect")
             }
         }
@@ -77,7 +92,17 @@ class LoginViewController: UIViewController {
             (error) in
             if error == nil {
                 ProgressHUD.success("Reset link sent to email.")
-            }else{
+            }
+            if let error = error as? NSError, let code = AuthErrorCode.Code(rawValue: error.code){
+                if code == AuthErrorCode.networkError {
+                    // Handle the case where the device is offline
+                    DispatchQueue.main.async {
+                        ProgressHUD.failed("The Internet connection is offline, please try again later.")
+                    }
+                    return
+                }
+            }
+            else{
                 ProgressHUD.error(error?.localizedDescription)
             }
         }
@@ -120,5 +145,15 @@ class LoginViewController: UIViewController {
             return emailTextField.text != ""
         }
         
+    }
+    
+    func showActivityIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func hideActivityIndicator() {
+        activityIndicator.stopAnimating()
+        activityIndicator.isHidden = true
     }
 }
